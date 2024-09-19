@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+        #meu_amor {
+            color: #000000;
+            opacity: 0;
+            transition: opacity 2s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="meu_amor"></div>
+    <div id="meu_odio">
+        <button id="botaoCarregar">Carregar cervejas...</button>
+    </div>
+</body>
+
+<script>
+    let estado = false
+
+    function alterarDiv() {
+        let div = document.getElementById("meu_amor")
+
+        if (!estado) {
+        
+            div.style.opacity = 0
+
+            setTimeout(() => {
+                div.innerHTML = `<h1>Guinness</h1>`
+                div.style.opacity = 1
+            }, 2000)
+            estado = true;
+        } else {
+            
+            div.style.opacity = 0
+
+            setTimeout(() => {
+                div.innerHTML = ""
+                estado = false
+            }, 1000)
+        }
+    }
+
+    let botao = document.getElementById("botaoCarregar")
+    botao.addEventListener("click", alterarDiv)
+</script>
+
+</html>
