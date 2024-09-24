@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>   
+
+<head>
+    <meta charset="UTF-8">      
+
+    <style>
+        #meuamor table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        #meuamor th, #meuamor td {
+            border: 2px solid brown;
+            text-align: left;
+            padding: 8px;
+        }
+        #meuamor th {
+            background-color: blueviolet;
+            color: white;
+        }
+        #meuamor td {
+            font-weight: bold;
+            color: blueviolet;
+            font-size: large;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="meuamor">
+        <button id="botaoCarregar">Carregar cervejas...</button>
+        <button id="botaoOrdenar">Mostrar cervejas ordenadas</button>
+        <button id="botaoEmbaralhar">Embaralhar cervejas</button>
+    </div>            
+</body>   
+
+<script>
+    let cervejas = ["Guinness", "Desperados", "Becks"];
+
+    function transformar(item) {
+        return `<tr><td>${item}</td></tr>`;
+    }
+
+    function carregarDiv() {
+        let div = document.getElementById("meuamor");
+        let cervejasHtml = cervejas.map(transformar).join("\n");
+
+        div.innerHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cervejas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${cervejasHtml}
+                </tbody>
+            </table>`;
+    }
+
+    function ordenarCervejas() {
+        let div = document.getElementById("meuamor");
+        let cervejasOrdenadas = cervejas.sort();
+
+        let cervejasHtml = cervejasOrdenadas.map(transformar).join("\n");
+
+        div.innerHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cervejas Ordenadas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${cervejasHtml}
+                </tbody>
+            </table>`;
+    }
+
+    function embaralharCervejas() {
+        let div = document.getElementById("meuamor");
+
+        
+        let cervejasEmbaralhadas = cervejas.sort(() => Math.random() - 0.5);
+
+        let cervejasHtml = cervejasEmbaralhadas.map(transformar).join("\n");
+
+        div.innerHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cervejas Embaralhadas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${cervejasHtml}
+                </tbody>
+            </table>`;
+    }
+
+    let botaoCarregar = document.getElementById("botaoCarregar");
+    botaoCarregar.addEventListener("click", carregarDiv);
+
+    let botaoOrdenar = document.getElementById("botaoOrdenar");
+    botaoOrdenar.addEventListener("click", ordenarCervejas);
+
+    let botaoEmbaralhar = document.getElementById("botaoEmbaralhar");
+    botaoEmbaralhar.addEventListener("click", embaralharCervejas);
+</script>
+
+</html>
