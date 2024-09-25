@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>   
+
+   <head>
+      <meta charset="UTF-8">
+      <style>
+        #meuamor table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        #meuamor th, #meuamor td {
+            border: 2px solid brown;
+            text-align: left;
+            padding: 8px;
+        }
+        #meuamor th {
+            background-color: blueviolet;
+            color: white;
+        }
+        #meuamor td {
+            font-weight: bold;
+            color: blueviolet;
+            font-size: large;
+        }
+    </style>  
+   </head>
+
+   <body>
+        <div id="controls">
+            <button id="botaoCarregar">Carregar campeões...</button>
+            <button id="botaoOrdenar">Mostrar campeões ordenados</button>
+            <button id="botaoEmbaralhar">Embaralhar campeões</button>
+        </div>
+
+        <div id="meuamor"></div>            
+   </body>   
+
+   <script>
+    let campeoesLOL = [
+        "Aatrox", "Ahri", "Akali", "Alistar", "Amumu", "Anivia", "Annie", "Aphelios", "Ashe", 
+        "Aurelion Sol", "Azir", "Bard", "Blitzcrank", "Brand", "Braum", "Caitlyn", "Camille", 
+        "Cassiopeia", "Cho'Gath", "Corki", "Darius", "Diana", "Dr. Mundo", "Draven", "Ekko", 
+        "Elise", "Evelynn", "Ezreal", "Fiddlesticks", "Fiora", "Fizz", "Galio", "Gangplank", 
+        "Garen", "Gnar", "Gragas", "Graves", "Gwen", "Hecarim", "Heimerdinger", "Illaoi", 
+        "Irelia", "Ivern", "Janna", "Jarvan IV", "Jax", "Jayce", "Jhin", "Jinx", "Kai'Sa", 
+        "Kalista", "Karma", "Karthus", "Kassadin", "Katarina", "Kayle", "Kayn", "Kennen", 
+        "Kha'Zix", "Kindred", "Kled", "Kog'Maw", "LeBlanc", "Lee Sin", "Leona", "Lillia", 
+        "Lissandra", "Lucian", "Lulu", "Lux", "Malphite", "Malzahar", "Maokai", "Master Yi", 
+        "Miss Fortune", "Mordekaiser", "Morgana", "Nami", "Nasus", "Nautilus", "Neeko", 
+        "Nidalee", "Nocturne", "Nunu & Willump", "Olaf", "Orianna", "Ornn", "Pantheon", 
+        "Poppy", "Pyke", "Qiyana", "Quinn", "Rakan", "Rammus", "Rek'Sai", "Rell", "Renata Glasc", 
+        "Renekton", "Rengar", "Riven", "Rumble", "Ryze", "Samira", "Sejuani", "Senna", "Seraphine", 
+        "Sett", "Shaco", "Shen", "Shyvana", "Singed", "Sion", "Sivir", "Skarner", "Sona", 
+        "Soraka", "Swain", "Sylas", "Syndra", "Tahm Kench", "Taliyah", "Talon", "Taric", "Teemo", 
+        "Thresh", "Tristana", "Trundle", "Tryndamere", "Twisted Fate", "Twitch", "Udyr", "Urgot", 
+        "Varus", "Vayne", "Veigar", "Vel'Koz", "Vex", "Vi", "Viego", "Viktor", "Vladimir", "Volibear", 
+        "Warwick", "Wukong", "Xayah", "Xerath", "Xin Zhao", "Yasuo", "Yone", "Yorick", "Yuumi", 
+        "Zac", "Zed", "Zeri", "Ziggs", "Zilean", "Zoe", "Zyra"
+    ];
+
+
+    const carregarDiv = (cervs) => {
+        const div = document.getElementById("meuamor");
+        const campeoesHtml = cervs.map(item => `<tr><td>${item}</td></tr>`).join("\n");
+        div.innerHTML = `
+            <table>
+                <thead>
+                    <tr><th>Campeões</th></tr>
+                </thead>
+                <tbody>
+                    ${campeoesHtml}
+                </tbody>
+            </table>`;
+    }
+
+
+    const ordenar = (cervs) => {
+        let campeoesOrdenados = cervs.sort();
+        carregarDiv(campeoesOrdenados);
+    }
+    
+
+    const embaralhar = (cervs) => {
+        let campeoesEmbaralhados = cervs.sort(() => Math.random() - 0.5);
+        carregarDiv(campeoesEmbaralhados);
+    }
+
+  
+    document.getElementById("botaoCarregar").addEventListener("click", () => carregarDiv(campeoesLOL));
+    document.getElementById("botaoOrdenar").addEventListener("click", () => ordenar(campeoesLOL));
+    document.getElementById("botaoEmbaralhar").addEventListener("click", () => embaralhar(campeoesLOL));
+
+   </script>
+
+</html>

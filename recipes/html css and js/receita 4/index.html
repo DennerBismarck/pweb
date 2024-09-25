@@ -24,14 +24,36 @@
             color: blueviolet;
             font-size: large;
         }
+
+
+        #meuamor a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            background-color: blueviolet;
+            color: white;
+            border-radius: 5px;
+            border: 2px solid blueviolet;
+        }
+
+   
+        #meuamor a:hover {
+            background-color: white;
+            color: blueviolet;
+        }
+
     </style>
 </head>
 
 <body>
     <div id="meuamor">
-        <button id="botaoCarregar">Carregar cervejas...</button>
-        <button id="botaoOrdenar">Mostrar cervejas ordenadas</button>
-        <button id="botaoEmbaralhar">Embaralhar cervejas</button>
+        <a id="botaoCarregar" href="#">Carregar cervejas...</a>
+        <a id="botaoOrdenar" href="#">Mostrar cervejas ordenadas</a>
+        <a id="botaoEmbaralhar" href="#">Embaralhar cervejas</a>
     </div>            
 </body>   
 
@@ -81,7 +103,6 @@
     function embaralharCervejas() {
         let div = document.getElementById("meuamor");
 
-        
         let cervejasEmbaralhadas = cervejas.sort(() => Math.random() - 0.5);
 
         let cervejasHtml = cervejasEmbaralhadas.map(transformar).join("\n");

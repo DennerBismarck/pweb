@@ -11,13 +11,32 @@
             opacity: 0;
             transition: opacity 2s ease;
         }
+
+        /* Estilo para transformar o <a> em um botão */
+        a#botaoCarregar {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: blueviolet;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        a#botaoCarregar:hover {
+            background-color: darkviolet;
+        }
     </style>
 </head>
 
 <body>
     <div id="meu_amor"></div>
     <div id="meu_odio">
-        <button id="botaoCarregar">Carregar cervejas...</button>
+        <a id="botaoCarregar" href="#">Carregar cervejas...</a>
     </div>
 </body>
 
@@ -28,22 +47,18 @@
         let div = document.getElementById("meu_amor")
 
         if (!estado) {
-        
-            div.style.opacity = 0
-
+            div.style.opacity = 0;
             setTimeout(() => {
-                div.innerHTML = `<h1>Guinness</h1>`
-                div.style.opacity = 1
-            }, 2000)
+                div.innerHTML = `<h1>Guinness</h1>`;
+                div.style.opacity = 1;
+            }, 500);
             estado = true;
         } else {
-            
-            div.style.opacity = 0
-
+            div.style.opacity = 0;
             setTimeout(() => {
-                div.innerHTML = ""
-                estado = false
-            }, 1000)
+                div.innerHTML = "";
+                estado = false;
+            }, 2000); 
         }
     }
 
