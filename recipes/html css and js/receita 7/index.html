@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        #cervejasDiv, #creditCardsDiv {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card h3 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        button, a {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <button id="botaoCarregarCervejas">Carregar Cervejas</button>
+        <button id="botaoCarregarCartoes">Carregar Cartões de Crédito</button>
+        <a target="_blank" href="./questao4.html">Questão 4 (Tabela)</a>
+    </div>
+
+    <div id="cervejasDiv"></div>
+    <div id="creditCardsDiv"></div>
+
+
+    <script>
+        let cervejas = []
+        let creditCards = []
+
+
+        const carregarDivCervejas = cs => {
+            const div = document.getElementById("cervejasDiv")
+            const itensHtml = cs.map(({ brand, name, alcohol }) => `
+                <div class="card">
+                    <h3>${brand}</h3>
+                    <p><strong>Nome:</strong> ${name}</p>
+                    <p><strong>Teor Alcoólico:</strong> ${alcohol}</p>
+                </div>
+            `)
+            div.innerHTML = `${itensHtml.join("\n")}`
+        }
+
+
+        const carregarDivCartoes = cs => {
+            const div = document.getElementById("creditCardsDiv")
+            const itensHtml = cs.map(({ credit_card_number, credit_card_expiry_date, credit_card_type }) => `
+                <div class="card">
+                    <h3>Cartão de Crédito</h3>
+                    <p><strong>Número:</strong> ${credit_card_number}</p>
+                    <p><strong>Validade:</strong> ${credit_card_expiry_date}</p>
+                    <p><strong>Tipo:</strong> ${credit_card_type}</p>
+                </div>
+            `)
+            div.innerHTML = `${itensHtml.join("\n")}`
+        }
+
+
+        async function carregarCervejas() {
+            try {
+                let res = await fetch("https://random-data-api.com/api/v2/beers?size=3")
+                cervejas = await res.json()
+                carregarDivCervejas(cervejas)
+            } catch (err) {
+                document.getElementById("cervejasDiv").innerHTML = "<div>Erro ao carregar as cervejas...</div>"
+            }
+        }
+
+
+        async function carregarCartoes() {
+            try {
+                let res = await fetch("https://random-data-api.com/api/v2/credit_cards?size=3")
+                creditCards = await res.json()
+                carregarDivCartoes(creditCards)
+            } catch (err) {
+                document.getElementById("creditCardsDiv").innerHTML = "<div>Erro ao carregar os cartões de crédito...</div>"
+            }
+        }
+
+        let botaoCervejas = document.getElementById("botaoCarregarCervejas")
+        botaoCervejas.addEventListener("click", () => carregarCervejas())
+
+        let botaoCartoes = document.getElementById("botaoCarregarCartoes")
+        botaoCartoes.addEventListener("click", () => carregarCartoes())
+
+    </script>
+
+</body>
+
+</html>
