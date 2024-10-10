@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>ReactZero</title>
+
+</head>
+
+<body>
+
+    <div id="app">
+
+
+
+    </div>
+
+    <script src="libs/react.js"></script>
+
+    <script src="libs/react-dom.js"></script>
+
+
+
+    <script>
+
+
+        ReactDOM.render(
+
+            React.createElement(
+                'table',
+                null,
+                React.createElement(
+                    'tr',
+                    null,
+                    React.createElement('th',null,"Nome"),
+                    React.createElement('th',null, "Estilo"),
+                    React.createElement('th',null,"IBU"),
+                ),
+            ),
+
+            document.getElementById('app')
+
+        );
+    </script>
+
+</body>
+
+</html>
