@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ReactZero</title>
+    <style>
+        #bebidas-tabela {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #bebidas-tabela thead {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #bebidas-tabela th, #bebidas-tabela td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+
+        #bebidas-tabela tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #bebidas-tabela tbody tr:hover {
+            background-color: #ddd;
+        }
+
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="libs/react.js"></script>
+    <script src="libs/react-dom.js"></script>
+    <script src="libs/babel.js"></script>
+
+    <script type="text/babel">
+        const cachaças = [
+            { nome: "Havana", marca: "Engenho Anísio Santiago", ano: 2018 },
+            { nome: "Ypióca", marca: "Ypióca Agroindustrial", ano: 2020 },
+            { nome: "Salinas", marca: "Cachaça Salinas", ano: 2019 },
+            { nome: "Velho Barreiro", marca: "Tatuzinho", ano: 2021 }
+        ];
+
+        function Cabecalho() {
+            return <h1 id="cabecalho" style={{ textAlign: "center", fontFamily: "Arial, sans-serif", color: "#333" }}>Minha tabela de cachaças</h1>;
+        }
+
+        function TabelaBebidas() {
+            return (
+                <div id="bebidas-div">
+                    <table id="bebidas-tabela">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Marca</th>
+                                <th>Ano</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {cachaças.map((cachaça, index) => (
+                                <tr key={index}>
+                                    <td>{cachaça.nome}</td>
+                                    <td>{cachaça.marca}</td>
+                                    <td>{cachaça.ano}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        function App() {
+            const [mostrarTabela, setMostrarTabela] = React.useState(false);
+
+            function handleMostrarTabela() {
+                setMostrarTabela(true);
+            }
+
+            return (
+                <div>
+                    <Cabecalho />
+                    <button onClick={handleMostrarTabela}>Mostrar Tabela de Cachaças</button>
+                    {mostrarTabela && <TabelaBebidas />}
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+</body>
+</html>
