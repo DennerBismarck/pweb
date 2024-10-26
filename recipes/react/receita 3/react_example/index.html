@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ReceitaReact - 2</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="libs/react.js"></script>
+    <script src="libs/react-dom.js"></script>
+    <script src="libs/babel.js"></script>
+
+    <script type="text/babel">
+
+        class ParagrafoBonito extends React.Component {
+            render(){
+                return(
+                    <div><p>Questão 1</p></div>
+                )
+            }
+        }
+
+
+        const ParagrafoBonito__ = () => {
+            return (
+                <div><p>Questão 1</p></div>
+            )
+        }
+
+
+        class TabelaBebidas extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <h1>{this.props.titulo}</h1>
+                        <table id="tabela" border="1">
+                            <thead>
+                                <tr><th>Nome</th><th>Marca</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Havana</td><td>Engenho Anísio Santiago</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                )
+            }
+        }
+
+
+        const TabelaBebidas__ = (props) => {
+            return (
+                <div>
+                    <h1>{props.titulo}</h1>
+                    <table id="tabela" border="1">
+                        <thead>
+                            <tr><th>Nome</th><th>Marca</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Havana</td><td>Engenho Anísio Santiago</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            )
+        }
+
+
+        function App(){
+            return (
+                <div>
+                    <ParagrafoBonito />
+                    <TabelaBebidas titulo="Tabela de Cachaças" />
+                </div>
+            )
+        }
+
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById("app")
+        );
+    </script>
+</body>
+</html>
