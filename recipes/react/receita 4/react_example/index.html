@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ReceitaReact - 3</title>
+</head>
+
+<body>
+    <div id="app">
+    </div>
+
+    <script src="libs/react.js"></script>
+    <script src="libs/react-dom.js"></script>
+    <script src="libs/babel.js"></script>
+
+    <script type="text/babel">
+
+        const TabelaBebidas = ({ titulo, cabecalhos, linhas }) => {
+            return (
+                <div>
+                    <h1>{titulo}</h1>
+                    <table id="tabela" border="1">
+                        <thead>
+                            <tr>
+                                {cabecalhos.map((cabecalho, index) => (
+                                    <th key={index}>{cabecalho}</th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {linhas.map((linha, index) => (
+                                <tr key={index}>
+                                    {linha.map((celula, indexCelula) => (
+                                        <td key={indexCelula}>{celula}</td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )
+        }
+
+        const valoresCabecalhos = ["Nome", "Marca"]
+        const valoresLinhas = [["Havana", "Engenho Anísio Santiago"], ["51", "Inferno"]]
+        ReactDOM.render(
+            <TabelaBebidas titulo="minha tabela de cana" cabecalhos={valoresCabecalhos} linhas={valoresLinhas} />,
+            document.getElementById("app"))
+    </script>
+</body>
+
+</html>
